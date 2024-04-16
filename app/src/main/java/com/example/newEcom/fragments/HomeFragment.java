@@ -1,28 +1,22 @@
 package com.example.newEcom.fragments;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.newEcom.R;
-import com.example.newEcom.activities.AddProductActivity;
 import com.example.newEcom.activities.AdminActivity;
 import com.example.newEcom.activities.MainActivity;
-import com.example.newEcom.activities.SearchActivity;
 import com.example.newEcom.adapters.CategoryAdapter;
 import com.example.newEcom.adapters.ProductAdapter;
 import com.example.newEcom.model.CategoryModel;
@@ -32,17 +26,13 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mancj.materialsearchbar.MaterialSearchBar;
-import com.mancj.materialsearchbar.SimpleOnSearchActionListener;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
-
-import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     RecyclerView categoryRecyclerView, productRecyclerView;
