@@ -25,6 +25,7 @@ import com.example.newEcom.model.ReviewModel;
 import com.example.newEcom.utils.FirebaseUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -39,8 +40,9 @@ public class OrderDetailsFragment extends Fragment {
     TextView productNameTextView, orderIdTextView, nameTextView, emailTextView, phoneTextView, addressTextView, commentTextView;
     ImageView productImageView;
     RatingBar ratingBar;
-    EditText titleReviewEditText, reviewEditText;
+    TextInputEditText titleReviewEditText, reviewEditText;
     Button submitBtn;
+    ImageView backBtn;
     LinearLayout productLinearLayout;
 
     OrderItemModel orderItem;
@@ -72,10 +74,15 @@ public class OrderDetailsFragment extends Fragment {
         ratingBar = view.findViewById(R.id.ratingBar);
         titleReviewEditText = view.findViewById(R.id.titleReviewEditText);
         reviewEditText = view.findViewById(R.id.reviewEditText);
+        backBtn = view.findViewById(R.id.backBtn);
         submitBtn = view.findViewById(R.id.submitBtn);
 
         MainActivity activity = (MainActivity) getActivity();
         activity.hideSearchBar();
+
+        backBtn.setOnClickListener(v -> {
+            activity.onBackPressed();
+        });
 
         int oid = getArguments().getInt("orderId");
 

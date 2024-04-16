@@ -3,9 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="8dp"
     tools:context=".fragments.OrderDetailsFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/my_primary"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:text="Review product"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="8dp">
 
     <LinearLayout
         android:id="@+id/productLinearLayout"
@@ -36,6 +67,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:text="Order Details"
         android:textSize="18sp"
         android:textColor="@color/black"
@@ -132,6 +164,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:text="Review Product"
         android:textSize="18sp"
         android:textColor="@color/black"
@@ -147,25 +180,61 @@
         android:progressBackgroundTint="@color/grey"
         android:progressTint="@color/my_primary"/>
 
-    <EditText
-        android:id="@+id/titleReviewEditText"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:hint="Title of your review..."
         android:textColorHint="@color/my_primary"
-        android:textColor="@color/black"
-        android:inputType="textMultiLine|textCapSentences"
-        android:autofillHints="Write" />
+        app:boxBackgroundColor="@color/white">
 
-    <EditText
-        android:id="@+id/reviewEditText"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titleReviewEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences|textMultiLine"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <EditText-->
+<!--        android:id="@+id/titleReviewEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Title of your review..."-->
+<!--        android:textColorHint="@color/my_primary"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:inputType="textMultiLine|textCapSentences"-->
+<!--        android:autofillHints="Write" />-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:hint="Write a review..."
         android:textColorHint="@color/my_primary"
-        android:textColor="@color/black"
-        android:inputType="textMultiLine|textCapSentences"
-        android:autofillHints="Write" />
+        app:boxBackgroundColor="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/reviewEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences|textMultiLine"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <EditText-->
+<!--        android:id="@+id/reviewEditText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Write a review..."-->
+<!--        android:textColorHint="@color/my_primary"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:inputType="textMultiLine|textCapSentences"-->
+<!--        android:autofillHints="Write" />-->
 
     <Button
         android:id="@+id/submitBtn"
@@ -173,5 +242,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="Submit"/>
+
+    </LinearLayout>
 
 </LinearLayout>

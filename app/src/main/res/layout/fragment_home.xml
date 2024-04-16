@@ -33,7 +33,8 @@
         android:id="@+id/shimmerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
 
         <include layout="@layout/shimmer_home_layout" />
     </com.facebook.shimmer.ShimmerFrameLayout>
@@ -52,8 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:visibility="invisible">
+            android:padding="10dp">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -110,11 +110,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-8dp"/>
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add product"/>
+<!--            <TextView-->
+<!--                android:id="@+id/textView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Add product"/>-->
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
