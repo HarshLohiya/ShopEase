@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ECom"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:host="shopease.page.link" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.CheckoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddProductActivity"
+            android:exported="false"
+            android:theme="@style/Admin.Theme.ECom" />
+        <activity
+            android:name=".activities.ModifyProductActivity"
+            android:exported="false"
+            android:theme="@style/Admin.Theme.ECom" />
+        <activity
+            android:name=".activities.AddCategoryActivity"
+            android:exported="false"
+            android:theme="@style/Admin.Theme.ECom"/>
+        <activity
+            android:name=".activities.ModifyCategoryActivity"
+            android:exported="false"
+            android:theme="@style/Admin.Theme.ECom"/>
+        <activity
+            android:name=".activities.AddBannerActivity"
+            android:exported="false"
+            android:theme="@style/Admin.Theme.ECom"/>
+        <activity
+            android:name=".activities.ModifyBannerActivity"
+            android:exported="false"
+            android:theme="@style/Admin.Theme.ECom"/>
+        <activity
+            android:name=".activities.AdminActivity"
+            android:exported="false"
+            android:theme="@style/Admin.Theme.ECom" />
+        <activity
+            android:name=".activities.SearchActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.ECom.ActionBar" />
+        <activity
+            android:name=".activities.CategoryActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.ECom.ActionBar" />
+        <activity
+            android:name=".activities.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ProductDetailActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

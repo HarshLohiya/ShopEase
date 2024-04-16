@@ -1,0 +1,37 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Admin.Theme.ECom" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/my_secondary</item>
+        <item name="colorPrimaryVariant">@color/my_secondary</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="android:statusBarColor">@color/my_secondary</item>
+    </style>
+
+    <style name="Base.Theme.ECom.ActionBar" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/my_primary</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+    </style>
+
+<!--    <style name="Theme.ECom" parent="Base.Theme.ECom" />-->
+
+    <style name="Theme.ECom" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/my_primary</item>
+        <item name="colorPrimaryVariant">@color/my_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/my_secondary</item>
+        <item name="colorSecondaryVariant">@color/my_secondary</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/white</item>
+
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowExitTransition">@transition/exit_anim</item>
+    </style>
+</resources>
