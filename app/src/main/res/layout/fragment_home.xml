@@ -33,8 +33,7 @@
         android:id="@+id/shimmerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
+        app:layout_constraintTop_toTopOf="parent">
 
         <include layout="@layout/shimmer_home_layout" />
     </com.facebook.shimmer.ShimmerFrameLayout>
@@ -53,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:visibility="invisible">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
