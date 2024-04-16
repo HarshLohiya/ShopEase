@@ -13,8 +13,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailSender {
-    private static final String emailUsername = "newtonbaba9.8ms@gmail.com";
-    private static final String emailPassword = "mbdjulranjhflpxb";
+    private static final String emailUsername = "YOUR_EMAIL";
+    private static final String emailPassword = "YOUR_GENERATED_PASSWORD";
 
     private String subject;
     private String messageBody;
