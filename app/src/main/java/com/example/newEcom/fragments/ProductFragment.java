@@ -111,6 +111,7 @@ public class ProductFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
         activity.hideSearchBar();
         shimmerFrameLayout.startShimmer();
+        cartLottie.setVisibility(View.GONE);
 
         productId = getArguments().getInt("productId");
         if (getArguments().getSerializable("productObj") != null) {
@@ -226,10 +227,14 @@ public class ProductFragment extends Fragment {
                                                 Toast.makeText(getActivity(), "Max stock available: " + stock, Toast.LENGTH_SHORT).show();
                                         }
                                         if (!documentExists) {
-                                            CartItemModel cartItem = new CartItemModel(currentProduct.getProductId(), currentProduct.getName(), currentProduct.getImage(), 1, currentProduct.getPrice(), currentProduct.getOriginalPrice(), Timestamp.now());
-                                            FirebaseUtil.getCartItems().add(cartItem);
-                                            cartLottie.playAnimation();
-                                            Toast.makeText(getContext(), "Added to Cart", Toast.LENGTH_SHORT).show();
+                                            if (stock >= 1) {
+                                                CartItemModel cartItem = new CartItemModel(currentProduct.getProductId(), currentProduct.getName(), currentProduct.getImage(), 1, currentProduct.getPrice(), currentProduct.getOriginalPrice(), Timestamp.now());
+                                                FirebaseUtil.getCartItems().add(cartItem);
+                                                cartLottie.setVisibility(View.VISIBLE);
+                                                cartLottie.playAnimation();
+                                                Toast.makeText(getContext(), "Added to Cart", Toast.LENGTH_SHORT).show();
+                                            } else
+                                                Toast.makeText(getActivity(), "Currently the item is out of stock :(", Toast.LENGTH_SHORT).show();
                                         }
                                         new Handler().postDelayed(new Runnable() {
                                             @Override

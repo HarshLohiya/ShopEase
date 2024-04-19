@@ -32,6 +32,16 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/emptyCartImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:src="@drawable/empty_cart"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"/>
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerLayout"
         android:layout_width="match_parent"

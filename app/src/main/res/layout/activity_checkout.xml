@@ -38,11 +38,22 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
+
+            <TextView
+                android:id="@+id/stockErrorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="* One of the product is out of stock"
+                android:textSize="14sp"
+                android:textColor="#ff0000"
+                android:visibility="gone"
+                />
 
             <TextView
                 android:layout_width="match_parent"

@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment {
     CategoryAdapter categoryAdapter;
     ProductAdapter productAdapter;
 
-//    TextView textView;
+    TextView textView;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         searchBar = getActivity().findViewById(R.id.searchBar);
-//        textView = view.findViewById(R.id.textView);
+        textView = view.findViewById(R.id.textView);
         categoryRecyclerView = view.findViewById(R.id.categoryRecyclerView);
         productRecyclerView = view.findViewById(R.id.productRecyclerView);
         carousel = view.findViewById(R.id.carousel);
@@ -67,9 +67,9 @@ public class HomeFragment extends Fragment {
         activity.showSearchBar();
         shimmerFrameLayout.startShimmer();
 
-//        textView.setOnClickListener(v -> {
-//            startActivity(new Intent(getActivity(), AdminActivity.class));
-//        });
+        textView.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), AdminActivity.class));
+        });
 
         initCarousel();
         initCategories();

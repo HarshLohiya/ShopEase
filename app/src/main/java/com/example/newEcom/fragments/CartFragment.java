@@ -39,7 +39,7 @@ public class CartFragment extends Fragment {
     TextView cartPriceTextView;
     RecyclerView cartRecyclerView;
     Button continueBtn;
-    ImageView backBtn;
+    ImageView backBtn, emptyCartImageView;
     CartAdapter cartAdapter;
     int totalPrice = 0;
 
@@ -58,12 +58,14 @@ public class CartFragment extends Fragment {
         cartRecyclerView = view.findViewById(R.id.cartRecyclerView);
         continueBtn = view.findViewById(R.id.continueBtn);
         backBtn = view.findViewById(R.id.backBtn);
+        emptyCartImageView = view.findViewById(R.id.emptyCartImageView);
         shimmerFrameLayout = view.findViewById(R.id.shimmerLayout);
         mainLinearLayout = view.findViewById(R.id.mainLinearLayout);
 
         MainActivity activity = (MainActivity) getActivity();
         activity.hideSearchBar();
         shimmerFrameLayout.startShimmer();
+        emptyCartImageView.setVisibility(View.INVISIBLE);
 
         getCartProducts();
 
@@ -104,6 +106,7 @@ public class CartFragment extends Fragment {
                 .setQuery(query, CartItemModel.class)
                 .build();
 
+        emptyCartImageView.setVisibility(View.INVISIBLE);
         cartAdapter = new CartAdapter(options, getActivity());
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         cartRecyclerView.setLayoutManager(manager);
@@ -115,5 +118,6 @@ public class CartFragment extends Fragment {
     public void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver, new IntentFilter("price"));
+        cartAdapter.startListening();
     }
 }

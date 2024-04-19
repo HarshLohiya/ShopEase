@@ -1,5 +1,6 @@
 package com.example.newEcom.adapters;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -40,6 +41,7 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartItemModel, CartAda
     final int[] stock = new int[1];
     int totalPrice = 0;
     boolean gotSum = false;
+    int count;
 //    CartListener cartListener;
 //    Cart cart;
 //    public interface CartListener {
@@ -48,6 +50,7 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartItemModel, CartAda
 
     public CartAdapter(@NonNull FirestoreRecyclerOptions<CartItemModel> options, Context context) {
         super(options);
+        count = options.getSnapshots().size();
         this.context = context;
 //        this.products = products;
 //        this.cartListener = cartListener;
@@ -70,6 +73,7 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartItemModel, CartAda
 //        totalPrice += model.getPrice() * model.getQuantity();
 //        Log.i("Check", model.getPrice() +" "+model.getQuantity());
 //        totalPrice += (int) (long) document.getData().get("price") * (int) (long)document.getData().get("quantity");
+        activity.findViewById(R.id.emptyCartImageView).setVisibility(View.INVISIBLE);
         if (position == 0 && !gotSum) {
             calculateTotalPrice();
         }
@@ -85,6 +89,7 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartItemModel, CartAda
             public void onSuccess() {
                 if (holder.getBindingAdapterPosition() == getSnapshots().size()-1) {
                     ShimmerFrameLayout shimmerLayout = activity.findViewById(R.id.shimmerLayout);
+                    shimmerLayout.stopShimmer();
                     shimmerLayout.setVisibility(View.GONE);
                     activity.findViewById(R.id.mainLinearLayout).setVisibility(View.VISIBLE);
                 }
@@ -167,6 +172,25 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartItemModel, CartAda
                 });
     }
 
+    @Override
+    public void onDataChanged() {
+        super.onDataChanged();
+        if (getItemCount() == 0){
+//            Toast.makeText(context, "True", Toast.LENGTH_SHORT).show();
+            Activity activity = (Activity) context;
+            ShimmerFrameLayout shimmerLayout = activity.findViewById(R.id.shimmerLayout);
+            shimmerLayout.stopShimmer();
+            shimmerLayout.setVisibility(View.GONE);
+            activity.findViewById(R.id.mainLinearLayout).setVisibility(View.VISIBLE);
+            activity.findViewById(R.id.emptyCartImageView).setVisibility(View.VISIBLE);
+        }
+        else {
+//            Toast.makeText(context, "False", Toast.LENGTH_SHORT).show();
+            Activity activity = (Activity) context;
+            activity.findViewById(R.id.emptyCartImageView).setVisibility(View.INVISIBLE);
+        }
+    }
+
     public class CartViewHolder extends RecyclerView.ViewHolder {
         TextView productName, productPrice, singleProductPrice, productQuantity, minusBtn, plusBtn, originalPrice;
         ImageView productCartImage;
@@ -185,77 +209,4 @@ public class CartAdapter extends FirestoreRecyclerAdapter<CartItemModel, CartAda
 //            viewGroup = itemView.findViewById(android.R.id.content);
         }
     }
-
-
-//    @Override
-//    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-//        ProductModel productModel = products.get(position);
-////        if (productModel.getQuantity() > 0) {
-//            holder.productName.setText(productModel.getName());
-//            holder.productPrice.setText("Rs. " + productModel.getPrice() * productModel.getQuantity());
-//            holder.productQuantity.setText(productModel.getQuantity() + " item(s)");
-////        holder.productQuantity.setText(productModel.getStock());
-//            Picasso.get().load(productModel.getImage()).into(holder.productCartImage);
-//            holder.itemView.setOnClickListener(v -> {
-//                setQuantityDialog(holder.viewGroup, productModel);
-//            });
-//        }
-//    }
-//
-//    private void setQuantityDialog(ViewGroup viewGroup, ProductModel productModel) {
-//        View view = LayoutInflater.from(context).inflate(R.layout.quantity_dialog, viewGroup, false);
-//        AlertDialog dialog = new AlertDialog.Builder(context)
-//                .setView(view)
-//                .create();
-//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
-//
-//        TextView nameTextView = view.findViewById(R.id.productName);
-//        TextView stockTextView = view.findViewById(R.id.productStock);
-//        TextView quantityTextView = view.findViewById(R.id.quantity);
-//        nameTextView.setText(productModel.getName());
-//        stockTextView.setText("Stock: " + productModel.getStock());
-//        quantityTextView.setText(String.valueOf(productModel.getQuantity()));
-//
-//
-//        view.findViewById(R.id.minusBtn).setOnClickListener(v1 -> {
-//            int quantity = productModel.getQuantity();
-//            if (quantity > 0)
-//                quantity--;
-//            productModel.setQuantity(quantity);
-//            quantityTextView.setText(String.valueOf(quantity));
-//        });
-//
-//        view.findViewById(R.id.plusBtn).setOnClickListener(v1 -> {
-//            int quantity = productModel.getQuantity();
-//            quantity++;
-//            if (quantity > productModel.getStock()){
-//                Toast.makeText(context, "Max stock available: " + productModel.getStock(), Toast.LENGTH_SHORT).show();
-//                return;
-//            } else {
-//                productModel.setQuantity(quantity);
-//                quantityTextView.setText(String.valueOf(quantity));
-//            }
-//        });
-
-//        view.findViewById(R.id.saveBtn).setOnClickListener(v1 -> {
-//            dialog.dismiss();
-//            totalPrice = 0;
-//            for (ProductModel p : products)
-//                totalPrice += p.getPrice() * p.getQuantity();
-//
-//            Intent intent = new Intent("price");
-//            intent.putExtra("totalPrice", totalPrice);
-//            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-//            notifyDataSetChanged();
-////            cart.updateItem(productModel, productModel.getQuantity());
-////            cartListener.onQuantityChanged();
-//        });
-//
-//        dialog.show();
-//    }
-
-//    @Override
-//    public int getItemCount() {
-//        return products.size();
-//    }
 }
