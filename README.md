@@ -21,7 +21,7 @@ ShopEase App is a dynamic e-commerce Android application crafted with Java, feat
 ## Demo
 
 Link of the apk file:
-https://drive.google.com/file/d/1FmDr8Ra8YXDWiJwh8suTgCcDI2qKtyOb/view?usp=sharing
+[https://drive.google.com/file/d/1FmDr8Ra8YXDWiJwh8suTgCcDI2qKtyOb/view?usp=sharing](https://drive.google.com/file/d/13bq5KZvJwAaOwmmG__4s6LSvmDybDE08/view?usp=sharing)
 ## Tech Stack
 
 **IDE:** Android Studio
