@@ -1,7 +1,7 @@
 
 # ShopEase
 
-ShopEase App is a dynamic e-commerce Android application crafted with Java, featuring an intuitive in-app admin panel for efficient management and hassle-free user authentication via email or Google account integration. Leveraging Firebase Firestore as the backend database, the app boasts a robust cart system and personalized profile pages for users to track wishlisted and ordered products. 
+ShopEase is an innovative e-commerce Android application developed in Java, featuring seamless user authentication, robust cart management, and personalized profiles. Utilizing Firebase Firestore as its backend, the app automates email generation for order details and integrates an intuitive admin panel for efficient management. With sophisticated search, rating and review systems, short link sharing, and a section for similar products, ShopEase delivers a modern shopping experience, enhancing user engagement and promoting product discovery.
 
 
 ## Features
