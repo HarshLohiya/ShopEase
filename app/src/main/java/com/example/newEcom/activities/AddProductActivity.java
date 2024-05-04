@@ -197,7 +197,7 @@ public class AddProductActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        FirebaseUtil.getDetails().update("lastOrderId", productId)
+                        FirebaseUtil.getDetails().update("lastProductId", productId)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
