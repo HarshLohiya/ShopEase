@@ -20,7 +20,7 @@ ShopEase is an innovative e-commerce Android application developed in Java, feat
 
 ## Demo
 
-Link of the apk file: [https://drive.google.com/file/d/1KLRQWjY8hg7pWj97Xrrv4lEaQTUqiml-/view?usp=sharing](https://drive.google.com/file/d/1KLRQWjY8hg7pWj97Xrrv4lEaQTUqiml-/view?usp=sharing)
+Link of the apk file: [https://1drv.ms/u/s!AhoTtWrf2wE2gjaiZdyD-fTSoSaf?e=ofFXaw](https://1drv.ms/u/s!AhoTtWrf2wE2gjaiZdyD-fTSoSaf?e=ofFXaw)
 
 [//]: <> (If you want to access the admin panel, you can mail me at harshlohiya2003@gmail.com)
 ## Tech Stack
