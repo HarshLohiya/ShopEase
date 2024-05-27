@@ -34,6 +34,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class OrderDetailsFragment extends Fragment {
@@ -121,11 +123,13 @@ public class OrderDetailsFragment extends Fragment {
 
                             if (isNew){
                                 int newNoOfRating = productModel.getNoOfRating() + 1;
-                                float newRating = (productModel.getRating() + rating) / newNoOfRating;
+                                float newRating = (productModel.getRating() * productModel.getNoOfRating() + rating) / newNoOfRating;
+//                                DecimalFormat df = new DecimalFormat("#.#");
+//                                newRating = Float.parseFloat(df.format(newRating));
                                 FirebaseUtil.getProducts().document(productDocId).update("rating", newRating);
                                 FirebaseUtil.getProducts().document(productDocId).update("noOfRating", newNoOfRating);
                             } else {
-                                float newRating = (productModel.getRating() - oldReviewModel.getRating() + rating) / productModel.getNoOfRating();
+                                float newRating = (productModel.getRating() * productModel.getNoOfRating() - oldReviewModel.getRating() + rating) / productModel.getNoOfRating();
                                 FirebaseUtil.getProducts().document(productDocId).update("rating", newRating);
                             }
 

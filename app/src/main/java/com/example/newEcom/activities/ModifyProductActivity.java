@@ -125,7 +125,7 @@ public class ModifyProductActivity extends AppCompatActivity {
             public void onCallback(List<ProductModel> productsList, List<String> docIdList) {
 //                products = productsList;
                 String[] ids = new String[productsList.size()];
-                for (int i=0; i<productsList.size(); i++)
+                for (int i = 0; i < productsList.size(); i++)
                     ids[i] = Integer.toString(productsList.get(i).getProductId());
 
                 idAdapter = new ArrayAdapter<>(context, R.layout.dropdown_item, ids);
@@ -206,6 +206,7 @@ public class ModifyProductActivity extends AppCompatActivity {
             public void onSuccess() {
                 dialog.dismiss();
             }
+
             @Override
             public void onError(Exception e) {
             }
@@ -219,9 +220,9 @@ public class ModifyProductActivity extends AppCompatActivity {
         categoryDropDown.setText(currProduct.getCategory());
         descEditText.setText(currProduct.getDescription());
         specEditText.setText(currProduct.getSpecification());
-        stockEditText.setText(currProduct.getStock()+"");
-        priceEditText.setText(currProduct.getPrice()+"");
-        discountEditText.setText(currProduct.getDiscount()+"");
+        stockEditText.setText(currProduct.getStock() + "");
+        priceEditText.setText(currProduct.getPrice() + "");
+        discountEditText.setText(currProduct.getDiscount() + "");
     }
 
     private void removeImage() {
@@ -243,7 +244,7 @@ public class ModifyProductActivity extends AppCompatActivity {
                 }).show();
     }
 
-    private void updateToFirebase(){
+    private void updateToFirebase() {
         if (!validate())
             return;
 
@@ -252,7 +253,7 @@ public class ModifyProductActivity extends AppCompatActivity {
         dialog.setTitleText("Loading...");
         dialog.setCancelable(false);
         dialog.show();
-        if (imageUri != null ) {
+        if (imageUri != null) {
             FirebaseUtil.getProductImageReference(productId + "").putFile(imageUri)
                     .addOnCompleteListener(t -> {
                         FirebaseUtil.getProductImageReference(productId + "").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -267,8 +268,7 @@ public class ModifyProductActivity extends AppCompatActivity {
                             }
                         });
                     });
-        }
-        else {
+        } else {
             updateDataToFirebase();
             dialog.dismiss();
             Toast.makeText(context, "Product has been successfully modified!", Toast.LENGTH_SHORT).show();
@@ -287,11 +287,13 @@ public class ModifyProductActivity extends AppCompatActivity {
             FirebaseUtil.getProducts().document(docId).update("description", descEditText.getText().toString());
         if (!specEditText.getText().toString().equals(currProduct.getSpecification()))
             FirebaseUtil.getProducts().document(docId).update("specification", specEditText.getText().toString());
-        if (!stockEditText.getText().toString().equals(currProduct.getStock()+""))
+        if (!stockEditText.getText().toString().equals(currProduct.getStock() + ""))
             FirebaseUtil.getProducts().document(docId).update("stock", Integer.parseInt(stockEditText.getText().toString()));
-        if (!priceEditText.getText().toString().equals(currProduct.getPrice()+""))
-            FirebaseUtil.getProducts().document(docId).update("price", Integer.parseInt(priceEditText.getText().toString()));
-        if (!discountEditText.getText().toString().equals(currProduct.getDiscount()+""))
+        if (!priceEditText.getText().toString().equals(currProduct.getOriginalPrice() + "")) {
+            FirebaseUtil.getProducts().document(docId).update("originalPrice", Integer.parseInt(priceEditText.getText().toString()));
+            FirebaseUtil.getProducts().document(docId).update("price", Integer.parseInt(priceEditText.getText().toString()) - Integer.parseInt(discountEditText.getText().toString()));
+        }
+        if (!discountEditText.getText().toString().equals(currProduct.getDiscount() + ""))
             FirebaseUtil.getProducts().document(docId).update("discount", Integer.parseInt(discountEditText.getText().toString()));
     }
 
@@ -318,7 +320,10 @@ public class ModifyProductActivity extends AppCompatActivity {
             priceEditText.setError("Price is required");
             isValid = false;
         }
-
+        if (Integer.parseInt(discountEditText.getText().toString()) > Integer.parseInt(priceEditText.getText().toString())) {
+            priceEditText.setError("Price should be more than discount");
+            isValid = false;
+        }
         if (!imageUploaded) {
             Toast.makeText(context, "Image is not selected", Toast.LENGTH_SHORT).show();
             isValid = false;
@@ -340,6 +345,7 @@ public class ModifyProductActivity extends AppCompatActivity {
                     public void onSuccess() {
                         dialog.dismiss();
                     }
+
                     @Override
                     public void onError(Exception e) {
                     }
@@ -370,7 +376,9 @@ public class ModifyProductActivity extends AppCompatActivity {
 
     public interface MyCallback {
         void onCallback(String[] categories);
+
         void onCallback(int[] size);
+
         void onCallback(List<ProductModel> products, List<String> docIds);
     }
 

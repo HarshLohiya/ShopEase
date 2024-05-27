@@ -52,6 +52,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ProductFragment extends Fragment {
@@ -180,8 +181,10 @@ public class ProductFragment extends Fragment {
         originalPrice.setPaintFlags(originalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         discountPercentage.setText(discountPerc + "% OFF");
 
-        ratingBar.setRating(currentProduct.getRating());
-        ratingTextView.setText(currentProduct.getRating() + "");
+        DecimalFormat df = new DecimalFormat("#.#");
+        float rating = Float.parseFloat(df.format(currentProduct.getRating()));
+        ratingBar.setRating(rating);
+        ratingTextView.setText(rating + "");
         noOfRatingTextView.setText("(" + currentProduct.getNoOfRating() + ")");
         productDescription.setText(currentProduct.getDescription());
         productSpec.setText(currentProduct.getSpecification());

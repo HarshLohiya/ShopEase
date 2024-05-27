@@ -32,6 +32,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+
 public class SearchAdapter extends FirestoreRecyclerAdapter<ProductModel, SearchAdapter.SearchViewHolder> {
     private Context context;
     private AppCompatActivity activity;
@@ -58,8 +60,11 @@ public class SearchAdapter extends FirestoreRecyclerAdapter<ProductModel, Search
         holder.originalPrice.setPaintFlags(holder.originalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         int discountPerc = (product.getDiscount() * 100) / product.getOriginalPrice();
         holder.discountPercentage.setText(discountPerc + "% OFF");
-        holder.ratingBar.setRating(product.getRating());
-        holder.ratingTextView.setText(product.getRating() + "");
+
+        DecimalFormat df = new DecimalFormat("#.#");
+        float rating = Float.parseFloat(df.format(product.getRating()));
+        holder.ratingBar.setRating(rating);
+        holder.ratingTextView.setText(rating + "");
         holder.noOfRatingTextView.setText("(" + product.getNoOfRating() + ")");
 
         holder.productLinearLayout.setOnClickListener(v -> {
