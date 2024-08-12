@@ -19,23 +19,27 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        lottieAnimation = findViewById(R.id.lottieAnimationView);
-        lottieAnimation.playAnimation();
+        throw new NullPointerException("This is a deliberate crash for testing purposes for interview."); // comment this line to run the app properly, it was just added for testing purpose using ADB
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                FirebaseUser currUser = FirebaseAuth.getInstance().getCurrentUser();
-                if (currUser == null) {
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                } else {
-                    if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("harshlohiya.photos@gmail.com"))
-                        startActivity(new Intent(SplashActivity.this, AdminActivity.class));
-                    else
-                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                }
-                finish();
-            }
-        }, 3000);
+        //Remove comment from below section for proper working of the app.
+
+//        lottieAnimation = findViewById(R.id.lottieAnimationView);
+//        lottieAnimation.playAnimation();
+//
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                FirebaseUser currUser = FirebaseAuth.getInstance().getCurrentUser();
+//                if (currUser == null) {
+//                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+//                } else {
+//                    if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("harshlohiya.photos@gmail.com"))
+//                        startActivity(new Intent(SplashActivity.this, AdminActivity.class));
+//                    else
+//                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//                }
+//                finish();
+//            }
+//        }, 3000);
     }
 }
